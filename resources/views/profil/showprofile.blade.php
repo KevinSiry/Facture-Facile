@@ -20,6 +20,10 @@
                                 <input name="info_phone" type="tel" class="form-control" @if($info_users->info_phone == NULL) placeholder="Entrez le numéro de téléphone" @else value="{{ $info_users->info_phone }}" @endif>
                             </div>
                             <div class="form-group">
+                                <label for="AddMail">Adresse e-mail :</label>
+                                <input name="info_mail" type="email" class="form-control" @if($info_users->info_mail == NULL) placeholder="Entrez votre adresse e-mail" @else value="{{ $info_users->info_mail }}" @endif>
+                            </div>
+                            <div class="form-group">
                                 <label for="NumTva">N° de TVA :</label>
                                 <input name="info_tva" type="text" class="form-control" @if($info_users->info_tva == NULL) placeholder="Entrez le numéro de TVA" @else value="{{ $info_users->info_tva }}" @endif>
                             </div>

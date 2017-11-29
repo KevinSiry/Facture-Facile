@@ -29,3 +29,5 @@ Route::get('/deletepresta/{idpresta}/{idlist}', 'PrestationController@DeletePres
 
 Route::get('/profile/{idprofile}', 'PrestationController@ShowProfile')->name('profile')->where('idprofile', '[0-9]+');
 Route::post('/changeprofile/{idprofile}', 'PrestationController@ChangeProfile')->where('idprofile', '[0-9]+');
+
+Route::get('/facture', 'PrestationController@ShowFacture')->name('facture');

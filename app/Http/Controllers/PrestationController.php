@@ -7,6 +7,7 @@ use App\Prestation;
 use App\Infouser;
 use Illuminate\Http\Request;
 use Auth;
+use PDF;
 
 class PrestationController extends Controller
 {
@@ -145,6 +146,7 @@ class PrestationController extends Controller
                         'info_etpname' => $request->info_etpname,
                         'info_tva' => $request->info_tva,
                         'info_siret' => $request->info_siret,
+                        'info_mail' => $request->info_mail,
                     ];
 
                     Infouser::where('info_userid', $idprofile)->update($update);
@@ -156,6 +158,7 @@ class PrestationController extends Controller
                         'info_etpname' => 'string|max:255',
                         'info_tva' => 'string|max:20',
                         'info_siret' => 'string|max:20',
+                        'info_mail' => 'string|max:50',
                     ]);
 
                     $changeprofile = new Infouser();
@@ -165,6 +168,7 @@ class PrestationController extends Controller
                     $changeprofile->info_etpname = $request->info_etpname;
                     $changeprofile->info_tva = $request->info_tva;
                     $changeprofile->info_siret = $request->info_siret;
+                    $changeprofile->info_mail = $request->info_mail;
                     $changeprofile->save();
 
                 }
@@ -177,4 +181,18 @@ class PrestationController extends Controller
             }
     }
 
+    public function ShowFacture(Request $request)
+    {
+        $user = Auth::user()->id;
+        $prestataire = Infouser::all()->where('info_userid', $user)->first();
+        $date = date('d/m/Y');
+
+        if($request->has('download')){
+            $pdf = PDF::loadView('factures/showfacture', compact("prestataire", "date"));
+            $name = "Kevin.pdf";
+            return $pdf->download($name);
+        }
+
+        return view('factures/showfacture', ['prestataire' => $prestataire, 'date' => $date]);
+    }
 }

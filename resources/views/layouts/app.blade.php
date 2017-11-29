@@ -40,6 +40,7 @@
                     <ul class="nav navbar-nav">
                         @auth
                             <li><a href="{{ route('prestation') }}">Gestion des prestations</a></li>
+                            <li><a href="{{ route('facture') }}">Création factures</a></li>
                         @endauth
                     </ul>
 
@@ -90,6 +91,8 @@
         @yield('showcontenuliste')
 
         @yield('showprofile')
+
+        @yield('showfacture')
     </div>
 
     <!-- Scripts -->

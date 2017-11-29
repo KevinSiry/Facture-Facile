@@ -30,6 +30,7 @@ git add {{path}}
 git diff 
 git commit -m "{{message}}"
 git push origin master
+git pull origin master
 git checkout {{path}} #revert to last commit version / undo changes
 ```
 

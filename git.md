@@ -40,3 +40,5 @@ git clone {{url of repo https}} {{path to local directory}}
 composer install
 ```
 Don't forget to recreate the .env file
+
+https://wkhtmltopdf.org/downloads.html

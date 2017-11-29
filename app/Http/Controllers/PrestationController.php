@@ -8,6 +8,7 @@ use App\Infouser;
 use Illuminate\Http\Request;
 use Auth;
 use PDF;
+use App;
 
 class PrestationController extends Controller
 {
@@ -181,18 +182,38 @@ class PrestationController extends Controller
             }
     }
 
-    public function ShowFacture(Request $request)
+    public function ShowFacture()
     {
         $user = Auth::user()->id;
         $prestataire = Infouser::all()->where('info_userid', $user)->first();
         $date = date('d/m/Y');
 
-        if($request->has('download')){
-            $pdf = PDF::loadView('factures/showfacture', compact("prestataire", "date"));
-            $name = "Kevin.pdf";
-            return $pdf->download($name);
-        }
-
         return view('factures/showfacture', ['prestataire' => $prestataire, 'date' => $date]);
     }
+
+    public function GeneratePDF()
+    {
+        $user = Auth::user()->id;
+        $prestataire = Infouser::all()->where('info_userid', $user)->first();
+        $date = date('d/m/Y');
+
+        $data = [
+            'prestataire' => $prestataire,
+            'date' => $date
+        ];
+
+        $pdf = PDF::loadView('factures.modelefacture', $data);
+        return $pdf->stream();
+
+    }
+
+    public function test()
+    {
+        $user = Auth::user()->id;
+        $prestataire = Infouser::all()->where('info_userid', $user)->first();
+        $date = date('d/m/Y');
+
+        return view('factures/modelefacture', ['prestataire' => $prestataire, 'date' => $date]);
+    }
+
 }

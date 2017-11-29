@@ -2,9 +2,10 @@
 
 @section('showfacture')
 
-    <a href="{{ route('facture',['download'=>'pdf']) }}">Download PDF</a>
-
     <div class="container">
+
+        <a href="{{ route('PDF') }}">Download File</a>
+
         <div class="panel panel-default">
             <div class="panel-body" style="padding: 5%">
                 <div class="row">

@@ -31,3 +31,6 @@ Route::get('/profile/{idprofile}', 'PrestationController@ShowProfile')->name('pr
 Route::post('/changeprofile/{idprofile}', 'PrestationController@ChangeProfile')->where('idprofile', '[0-9]+');
 
 Route::get('/facture', 'PrestationController@ShowFacture')->name('facture');
+Route::get('/pdf', 'PrestationController@GeneratePDF')->name('PDF');
+
+Route::get('/test', 'PrestationController@test')->name('test');

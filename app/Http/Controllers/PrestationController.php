@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Liste;
 use App\Prestation;
 use App\Infouser;
+use App\Customer;
 use Illuminate\Http\Request;
 use Auth;
 use PDF;
@@ -28,7 +29,7 @@ class PrestationController extends Controller
     public function AddPrestation(Request $request)
     {
             $this->validate($request, [
-                'listname' => 'required|string|max:255',
+                'listname' => 'required|string|max:250',
             ]);
 
             $prestation = new Liste();
@@ -148,20 +149,15 @@ class PrestationController extends Controller
                         'info_tva' => $request->info_tva,
                         'info_siret' => $request->info_siret,
                         'info_mail' => $request->info_mail,
+                        'info_description' => $request->info_description,
+                        'info_street' => $request->info_street,
+                        'info_city' => $request->info_city,
                     ];
 
                     Infouser::where('info_userid', $idprofile)->update($update);
                 }
                 else
                 {
-                    $this->validate($request, [
-                        'info_phone' => 'string|max:20',
-                        'info_etpname' => 'string|max:255',
-                        'info_tva' => 'string|max:20',
-                        'info_siret' => 'string|max:20',
-                        'info_mail' => 'string|max:50',
-                    ]);
-
                     $changeprofile = new Infouser();
 
                     $changeprofile->info_userid = Auth::user()->id;
@@ -170,6 +166,9 @@ class PrestationController extends Controller
                     $changeprofile->info_tva = $request->info_tva;
                     $changeprofile->info_siret = $request->info_siret;
                     $changeprofile->info_mail = $request->info_mail;
+                    $changeprofile->info_description = $request->info_description;
+                    $changeprofile->info_street = $request->info_street;
+                    $changeprofile->info_city = $request->info_city;
                     $changeprofile->save();
 
                 }
@@ -214,6 +213,53 @@ class PrestationController extends Controller
         $date = date('d/m/Y');
 
         return view('factures/modelefacture', ['prestataire' => $prestataire, 'date' => $date]);
+    }
+
+    public function ShowCustomers()
+    {
+        $id = Auth::user()->id;
+        $customer = Customer::all()->where('id_artisan', $id);
+
+        return view('customers/showcustomers', ['id' => $id, 'customer' => $customer]);
+    }
+
+    public function AddCustomers(Request $request)
+    {
+        $id = Auth::user()->id;
+
+        $this->validate($request, [
+            'info_cust_name' => 'required|string|max:250',
+            'info_cust_phone' => 'required|string|max:250',
+            'info_cust_street' => 'required|string|max:250',
+            'info_cust_city' => 'required|string|max:250',
+        ]);
+
+        $customer = new Customer();
+
+        $customer->id_artisan = $id;
+        $customer->info_cust_name = $request->info_cust_name;
+        $customer->info_cust_phone = $request->info_cust_phone;
+        $customer->info_cust_street = $request->info_cust_street;
+        $customer->info_cust_city = $request->info_cust_city;
+        $customer->save();
+
+        return redirect()->route('showcustomers');
+    }
+
+    public function DeleteCustomer($id)
+    {
+        $l = Customer::where('id', $id)->where('id_artisan', Auth::user()->id);
+
+        if($l->count() > 0)
+        {
+            Customer::where('id', $id)->delete();
+
+            return redirect()->route('showcustomers');
+        }
+        else
+        {
+            return redirect()->route('home');
+        }
     }
 
 }

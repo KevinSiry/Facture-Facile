@@ -24,6 +24,18 @@
                                 <input name="info_mail" type="email" class="form-control" @if($info_users->info_mail == NULL) placeholder="Entrez votre adresse e-mail" @else value="{{ $info_users->info_mail }}" @endif>
                             </div>
                             <div class="form-group">
+                                <label for="EtpDesc">Description de l'entreprise :</label>
+                                <input name="info_description" type="text" class="form-control" @if($info_users->info_description == NULL) placeholder="Exemple : Développement informatique" @else value="{{ $info_users->info_description }}" @endif>
+                            </div>
+                            <div class="form-group">
+                                <label for="EtpStreet">Adresse de l'entreprise :</label>
+                                <input name="info_street" type="text" class="form-control" @if($info_users->info_street == NULL) placeholder="Exemple : 132 Avenue du Général Leclerc" @else value="{{ $info_users->info_street }}" @endif>
+                            </div>
+                            <div class="form-group">
+                                <label for="EtpCity">Code postal et ville :</label>
+                                <input name="info_city" type="text" class="form-control" @if($info_users->info_city == NULL) placeholder="Exemple : 64000 Pau" @else value="{{ $info_users->info_city }}" @endif>
+                            </div>
+                            <div class="form-group">
                                 <label for="NumTva">N° de TVA :</label>
                                 <input name="info_tva" type="text" class="form-control" @if($info_users->info_tva == NULL) placeholder="Entrez le numéro de TVA" @else value="{{ $info_users->info_tva }}" @endif>
                             </div>

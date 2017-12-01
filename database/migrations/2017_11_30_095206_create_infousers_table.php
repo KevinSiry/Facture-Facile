@@ -21,6 +21,9 @@ class CreateInfousersTable extends Migration
             $table->string('info_tva')->nullable();
             $table->string('info_siret')->nullable();
             $table->string('info_mail')->nullable();
+            $table->string('info_description')->nullable();
+            $table->string('info_street')->nullable();
+            $table->string('info_city')->nullable();
             $table->timestamps();
         });
     }

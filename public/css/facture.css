@@ -1,0 +1,49 @@
+table {
+    border-collapse: collapse; margin: 10px;
+}
+
+tr {
+    border: none;
+}
+
+td {
+    border-left: solid 1px #505050;
+}
+
+td:first-child {
+    border: none;
+}
+
+th:first-child {
+    border: none;
+}
+
+thead {
+    background-color: #F0F8FF
+}
+
+th {
+    border-left: solid 1px #505050;
+}
+
+th, td {
+    padding: 5px;
+}
+
+td {
+    padding-left: 10px;
+}
+
+#footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.table-header-size {
+    font-size: small;
+}

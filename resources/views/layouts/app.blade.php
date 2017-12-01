@@ -41,6 +41,7 @@
                         @auth
                             <li><a href="{{ route('prestation') }}">Gestion des prestations</a></li>
                             <li><a href="{{ route('facture') }}">Création factures</a></li>
+                            <li><a href="{{ route('showcustomers') }}">Informations clients</a></li>
                         @endauth
                     </ul>
 
@@ -93,6 +94,9 @@
         @yield('showprofile')
 
         @yield('showfacture')
+
+        @yield('addcustomers')
+        @yield('showcustomers')
     </div>
 
     <!-- Scripts -->

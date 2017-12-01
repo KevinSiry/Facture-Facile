@@ -34,3 +34,7 @@ Route::get('/facture', 'PrestationController@ShowFacture')->name('facture');
 Route::get('/pdf', 'PrestationController@GeneratePDF')->name('PDF');
 
 Route::get('/test', 'PrestationController@test')->name('test');
+
+Route::get('/showcustomers', 'PrestationController@ShowCustomers')->name('showcustomers');
+Route::post('/addcustomers/{id}', 'PrestationController@AddCustomers')->name('addcustomers');
+Route::get('/deletecustomer/{id}', 'PrestationController@DeleteCustomer');

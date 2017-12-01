@@ -6,6 +6,7 @@ return array(
     'pdf' => array(
         'enabled' => true,
         'binary'  => 'C:/wkhtmltopdf/wkhtmltopdf.exe',
+        'user-style-sheet' => '/public/css/app.css',
         'timeout' => false,
         'options' => array(),
         'env'     => array(),
